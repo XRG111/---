@@ -36,8 +36,7 @@ public class MybatisController {
      * @return
      */
     @RequestMapping("/addUser")
-    public @ResponseBody
-    String addUser(@RequestParam("name") String name, @RequestParam("age") Integer age) {
+    public @ResponseBody String addUser(@RequestParam("name") String name, @RequestParam("age") Integer age) {
         return memberMapper.addUser(name, age) > 0 ? "success" : "fail";
     }
 
@@ -56,17 +55,6 @@ public class MybatisController {
     public  @ResponseBody String clientDemo() {
         List<Users> user = memberMapper.selectAll();
         return cd.transmitInformation(user);
-    }
-
-    @RequestMapping("/list")
-    public String list(Model model) {
-        List<Users> users = memberMapper.selectAll();
-        model.addAttribute("users", users);
-        return "list";
-    }
-    @RequestMapping("/")
-    public String index() {
-        return "redirect:/list";
     }
 
 }
